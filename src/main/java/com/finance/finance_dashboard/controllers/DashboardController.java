@@ -13,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/dashboard")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class DashboardController {
 
     private final TransactionService transactionService;
@@ -40,9 +41,9 @@ public class DashboardController {
                 .sum();
 
         Map<String, Double> summary = new HashMap<>();
-        summary.put("totalIncome", totalIncome);
-        summary.put("totalExpense", totalExpense);
-        summary.put("balance", totalIncome - totalExpense);
+        summary.put("Total Income", totalIncome);
+        summary.put("Total Expense", totalExpense);
+        summary.put("Balance", totalIncome - totalExpense);
 
         return ResponseEntity.ok(summary);
     }

@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -21,8 +22,8 @@ public class TransactionController {
         this.userService = userService;
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Transaction> addTransaction(@RequestParam String username,
+    @PostMapping("/add/{username}")
+    public ResponseEntity<Transaction> addTransaction(@PathVariable String username,
                                                       @RequestBody Transaction transaction) {
         User user = userService.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
